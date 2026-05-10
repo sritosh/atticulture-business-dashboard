@@ -5,576 +5,419 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>All Projects</title>
+  <title>
+    All Projects
+  </title>
 
   <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-body{
+    body{
 
-  font-family:Arial,sans-serif;
+      font-family:Arial,sans-serif;
 
-  background:
-  linear-gradient(
-    135deg,
-    #09090f,
-    #111827,
-    #1e1b4b
-  );
+      background:
+      linear-gradient(
+        135deg,
+        #070816,
+        #111827,
+        #1e1b4b
+      );
 
-  min-height:100vh;
+      color:white;
 
-  padding:30px;
+      min-height:100vh;
 
-  color:white;
+      padding:30px;
 
-  overflow-x:hidden;
+      overflow-x:hidden;
 
-  position:relative;
-}
+      position:relative;
+    }
 
-/* ANIMATED BACKGROUND */
+    /* BACKGROUND */
 
-.bg-animation{
+    .bg-animation{
 
-  position:fixed;
+      position:fixed;
 
-  width:100%;
+      width:100%;
 
-  height:100%;
+      height:100%;
 
-  top:0;
+      top:0;
 
-  left:0;
+      left:0;
 
-  overflow:hidden;
+      overflow:hidden;
 
-  z-index:-1;
-}
+      z-index:-1;
+    }
 
-.blob{
+    .blob{
 
-  position:absolute;
+      position:absolute;
 
-  border-radius:50%;
+      border-radius:50%;
 
-  filter:blur(120px);
+      filter:blur(120px);
 
-  opacity:0.35;
+      opacity:0.3;
 
-  animation:float 12s infinite ease-in-out;
-}
+      animation:float 12s infinite ease-in-out;
+    }
 
-.blob1{
+    .blob1{
 
-  width:350px;
+      width:350px;
 
-  height:350px;
+      height:350px;
 
-  background:#7c3aed;
+      background:#7c3aed;
 
-  top:10%;
+      top:10%;
 
-  left:5%;
-}
+      left:5%;
+    }
 
-.blob2{
+    .blob2{
 
-  width:300px;
+      width:300px;
 
-  height:300px;
+      height:300px;
 
-  background:#06b6d4;
+      background:#06b6d4;
 
-  bottom:10%;
+      bottom:10%;
 
-  right:10%;
+      right:10%;
+    }
 
-  animation-delay:2s;
-}
+    .blob3{
 
-.blob3{
+      width:250px;
 
-  width:250px;
+      height:250px;
 
-  height:250px;
+      background:#ec4899;
 
-  background:#ec4899;
+      top:40%;
 
-  top:40%;
+      right:30%;
+    }
 
-  right:30%;
+    @keyframes float{
 
-  animation-delay:4s;
-}
+      0%{
+        transform:translateY(0px);
+      }
 
-@keyframes float{
+      50%{
+        transform:translateY(-30px);
+      }
 
-  0%{
-    transform:translateY(0px);
-  }
+      100%{
+        transform:translateY(0px);
+      }
+    }
 
-  50%{
-    transform:translateY(-30px);
-  }
+    /* NAVBAR */
 
-  100%{
-    transform:translateY(0px);
-  }
-}
+    .navbar{
 
-/* NAVBAR */
+      display:flex;
 
-.navbar{
+      justify-content:space-between;
 
-  display:flex;
+      align-items:center;
 
-  justify-content:space-between;
+      margin-bottom:40px;
+    }
 
-  align-items:center;
+    .logo{
 
-  margin-bottom:35px;
-}
+      font-size:40px;
 
-.logo{
+      font-weight:bold;
 
-  font-size:38px;
+      color:#a855f7;
 
-  font-weight:bold;
+      text-shadow:
+      0 0 10px #9333ea,
+      0 0 25px #9333ea;
+    }
 
-  color:#a855f7;
+    .nav-links{
 
-  text-shadow:
-  0 0 10px #9333ea,
-  0 0 25px #9333ea;
-}
+      display:flex;
 
-.nav-links{
+      gap:15px;
+    }
 
-  display:flex;
+    .nav-links a{
 
-  gap:15px;
-}
+      text-decoration:none;
 
-.nav-links a{
+      color:white;
 
-  text-decoration:none;
+      padding:12px 20px;
 
-  padding:12px 20px;
+      border-radius:14px;
 
-  border-radius:14px;
+      background:
+      rgba(255,255,255,0.08);
 
-  color:white;
+      border:
+      1px solid rgba(255,255,255,0.08);
 
-  font-weight:bold;
+      backdrop-filter:blur(12px);
+    }
 
-  background:
-  rgba(255,255,255,0.08);
+    h1{
 
-  border:
-  1px solid rgba(255,255,255,0.1);
+      font-size:50px;
 
-  backdrop-filter:blur(12px);
+      margin-bottom:35px;
 
-  transition:0.3s;
-}
+      color:#c084fc;
+    }
 
-.nav-links a:hover{
+    /* PROJECT GRID */
 
-  background:
-  rgba(168,85,247,0.25);
+    .project-grid{
 
-  box-shadow:
-  0 0 20px rgba(168,85,247,0.5);
-}
+      display:grid;
 
-/* TOP CARDS */
+      grid-template-columns:
+      repeat(auto-fit,minmax(360px,1fr));
 
-.top-cards{
+      gap:24px;
+    }
 
-  display:grid;
+    .project-card{
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
+      background:
+      rgba(255,255,255,0.08);
 
-  gap:20px;
+      border:
+      1px solid rgba(255,255,255,0.08);
 
-  margin-bottom:30px;
-}
+      backdrop-filter:blur(14px);
 
-.card{
+      border-radius:24px;
 
-  background:
-  rgba(255,255,255,0.08);
+      padding:24px;
 
-  border:
-  1px solid rgba(255,255,255,0.1);
+      box-shadow:
+      0 8px 30px rgba(0,0,0,0.3);
+    }
 
-  backdrop-filter:blur(14px);
+    .project-card h2{
 
-  padding:25px;
+      margin-bottom:14px;
+    }
 
-  border-radius:24px;
+    .artist{
 
-  box-shadow:
-  0 8px 30px rgba(0,0,0,0.3);
-}
+      color:#d1d5db;
 
-.card p{
+      margin-bottom:18px;
 
-  color:#cbd5e1;
+      line-height:1.8;
+    }
 
-  margin-bottom:10px;
-}
+    .section-title{
 
-.card h2{
+      margin-top:18px;
 
-  font-size:34px;
+      margin-bottom:10px;
 
-  color:#fff;
-}
+      font-size:18px;
 
-/* BOXES */
+      font-weight:bold;
+    }
 
-.add-box,
-.chart-section,
-.chart-box,
-.budget-box,
-.project-card,
-table{
+    .expense-title{
 
-  background:
-  rgba(255,255,255,0.08);
+      color:#f472b6;
+    }
 
-  border:
-  1px solid rgba(255,255,255,0.1);
+    .revenue-title{
 
-  backdrop-filter:blur(14px);
+      color:#22c55e;
+    }
 
-  border-radius:24px;
+    .mini-table{
 
-  box-shadow:
-  0 8px 30px rgba(0,0,0,0.3);
-}
+      width:100%;
 
-/* FORM SECTIONS */
+      border-collapse:collapse;
 
-.add-box,
-.budget-box{
+      margin-bottom:15px;
+    }
 
-  padding:25px;
+    .mini-table th{
 
-  margin-bottom:30px;
-}
+      text-align:left;
 
-.add-box h2,
-.budget-box h2,
-.title{
+      padding:10px;
 
-  color:#c084fc;
+      color:#c084fc;
+    }
 
-  margin-bottom:20px;
-}
+    .mini-table td{
 
-/* INPUTS */
+      padding:10px;
 
-input{
+      border-top:
+      1px solid rgba(255,255,255,0.08);
+    }
 
-  width:100%;
+    .stats{
 
-  padding:15px;
+      margin-top:20px;
 
-  border:none;
+      line-height:2;
+    }
 
-  border-radius:14px;
+    .profit{
 
-  margin-top:12px;
+      color:#22c55e;
 
-  background:
-  rgba(255,255,255,0.08);
+      font-weight:bold;
+    }
 
-  color:white;
+    .loss{
 
-  outline:none;
+      color:#ef4444;
 
-  font-size:15px;
+      font-weight:bold;
+    }
 
-  border:
-  1px solid rgba(255,255,255,0.08);
-}
+    /* BUTTONS */
 
-input::placeholder{
+    .button-row{
 
-  color:#cbd5e1;
-}
+      display:flex;
 
-/* BUTTONS */
+      gap:15px;
 
-button{
+      margin-top:22px;
+    }
 
-  width:100%;
+    button{
 
-  padding:14px;
+      flex:1;
 
-  margin-top:15px;
+      padding:14px;
 
-  border:none;
+      border:none;
 
-  border-radius:14px;
+      border-radius:14px;
 
-  background:
-  linear-gradient(
-    to right,
-    #7c3aed,
-    #06b6d4
-  );
+      color:white;
 
-  color:white;
+      font-weight:bold;
 
-  font-weight:bold;
+      cursor:pointer;
+    }
 
-  cursor:pointer;
+    .edit-btn{
 
-  transition:0.3s;
-}
+      background:
+      linear-gradient(
+        to right,
+        #3b82f6,
+        #06b6d4
+      );
+    }
 
-button:hover{
+    .delete-btn{
 
-  transform:translateY(-2px);
+      background:
+      linear-gradient(
+        to right,
+        #ef4444,
+        #f97316
+      );
+    }
 
-  box-shadow:
-  0 0 20px rgba(124,58,237,0.6);
-}
+    /* FOOTER */
 
-/* PROJECT GRID */
+    .footer{
 
-.project-grid{
+      text-align:center;
 
-  display:grid;
+      margin-top:45px;
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(320px,1fr));
+      color:#d1d5db;
+    }
 
-  gap:20px;
+    /* MOBILE */
 
-  margin-top:30px;
-}
+    @media(max-width:768px){
 
-.project-card{
+      body{
+        padding:18px;
+      }
 
-  padding:24px;
-}
+      .navbar{
 
-.project-card h2{
+        flex-direction:column;
 
-  color:#c084fc;
+        align-items:flex-start;
 
-  margin-bottom:10px;
-}
+        gap:20px;
+      }
 
-.artist{
+      .nav-links{
 
-  color:#cbd5e1;
+        flex-wrap:wrap;
+      }
 
-  margin-bottom:15px;
-}
+      h1{
 
-.stats{
+        font-size:36px;
+      }
 
-  line-height:1.9;
+      .project-grid{
 
-  margin-bottom:15px;
-}
+        grid-template-columns:1fr;
+      }
 
-.profit{
+      .button-row{
 
-  color:#22c55e;
+        flex-direction:column;
+      }
+    }
 
-  font-weight:bold;
-}
-
-/* CHARTS */
-
-.chart-section,
-.chart-box{
-
-  margin-top:35px;
-
-  padding:25px;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  flex-direction:column;
-}
-
-.chart-container{
-
-  width:280px;
-
-  height:280px;
-}
-
-/* TABLE */
-
-table{
-
-  width:100%;
-
-  margin-top:30px;
-
-  border-collapse:collapse;
-
-  overflow:hidden;
-}
-
-th{
-
-  background:
-  rgba(124,58,237,0.4);
-
-  color:white;
-
-  padding:16px;
-}
-
-td{
-
-  padding:16px;
-
-  text-align:center;
-
-  border-bottom:
-  1px solid rgba(255,255,255,0.08);
-}
-
-/* ACTION BUTTONS */
-
-.edit-btn{
-
-  background:#06b6d4;
-}
-
-.delete-btn{
-
-  background:#ef4444;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media(max-width:768px){
-
-  body{
-    padding:18px;
-  }
-
-  .navbar{
-
-    flex-direction:column;
-
-    gap:18px;
-
-    align-items:flex-start;
-  }
-
-  .logo{
-    font-size:28px;
-  }
-
-  .nav-links{
-
-    width:100%;
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-  }
-
-  .nav-links a{
-
-    flex:1;
-
-    text-align:center;
-
-    font-size:14px;
-
-    padding:10px;
-  }
-
-  .top-cards{
-
-    grid-template-columns:1fr;
-  }
-
-  .card h2{
-    font-size:26px;
-  }
-
-  .project-grid{
-
-    grid-template-columns:1fr;
-  }
-
-  .project-card{
-    padding:18px;
-  }
-
-  .chart-container{
-
-    width:220px;
-
-    height:220px;
-  }
-
-  table{
-
-    display:block;
-
-    overflow-x:auto;
-
-    white-space:nowrap;
-  }
-
-  input{
-    font-size:14px;
-  }
-
-  button{
-    font-size:14px;
-  }
-
-}
-.footer{
-
-  margin-top:40px;
-
-  text-align:center;
-
-  color:#cbd5e1;
-                  
-  font-size:14px;
-
-  opacity:0.8;
-}
-
-</style>
+  </style>
 
 </head>
 
 <body>
+
+  <!-- BACKGROUND -->
+
+  <div class="bg-animation">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+  </div>
 
   <!-- NAVBAR -->
 
@@ -590,24 +433,45 @@ td{
         Dashboard
       </a>
 
+      <a href="artists.html">
+        Artists
+      </a>
+
       <a href="budget.html">
-        Monthly Budget
+        Budget
       </a>
 
     </div>
 
   </div>
 
-  <h1 class="title">
+  <!-- TITLE -->
+
+  <h1>
     All Projects
   </h1>
+
+  <!-- PROJECT GRID -->
 
   <div
     class="project-grid"
     id="projectGrid"
   ></div>
 
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    Made with ❤️ by Sritosh for Atticulture
+
+  </div>
+
   <script>
+
+    const artists =
+      JSON.parse(
+        localStorage.getItem("artists")
+      ) || [];
 
     let projects =
       JSON.parse(
@@ -641,38 +505,19 @@ td{
 
     function editProject(index){
 
-      const updatedName =
+      const project =
+        projects[index];
+
+      const newName =
         prompt(
           "Edit Project Name",
-          projects[index].name
+          project.name
         );
 
-      const updatedArtist =
-        prompt(
-          "Edit Artists",
-          projects[index].artist
-        );
+      if(newName){
 
-      const updatedBudget =
-        prompt(
-          "Edit Budget",
-          projects[index].budget
-        );
-
-      if(
-        updatedName &&
-        updatedArtist &&
-        updatedBudget
-      ){
-
-        projects[index].name =
-          updatedName;
-
-        projects[index].artist =
-          updatedArtist;
-
-        projects[index].budget =
-          Number(updatedBudget);
+        project.name =
+          newName;
 
         saveProjects();
 
@@ -683,7 +528,9 @@ td{
     function renderProjects(){
 
       const grid =
-        document.getElementById("projectGrid");
+        document.getElementById(
+          "projectGrid"
+        );
 
       grid.innerHTML = "";
 
@@ -691,8 +538,8 @@ td{
 
         grid.innerHTML = `
 
-          <p class="empty">
-            No Projects Added Yet
+          <p>
+            No projects added yet.
           </p>
 
         `;
@@ -700,7 +547,102 @@ td{
         return;
       }
 
-      projects.forEach((project,index)=>{
+      projects
+      .slice()
+      .reverse()
+      .forEach((project,index)=>{
+
+        const realIndex =
+          projects.length - 1 - index;
+
+        /* SAFETY */
+
+        if(!project.expenses){
+
+          project.expenses = [];
+        }
+
+        if(!project.revenues){
+
+          project.revenues = [];
+        }
+
+        /* CALCULATIONS */
+
+        const totalSpent =
+          project.expenses.reduce(
+            (sum,item)=>
+            sum + Number(item.amount),
+            0
+          );
+
+        const totalRevenue =
+          project.revenues.reduce(
+            (sum,item)=>
+            sum + Number(item.amount),
+            0
+          );
+
+        const profit =
+          totalRevenue - totalSpent;
+
+        /* COLOR */
+
+        const artistData =
+          artists.find(
+            a =>
+            a.name ===
+            project.artists?.[0]
+          );
+
+        const color =
+          artistData
+          ? artistData.color
+          : "#a855f7";
+
+        /* EXPENSE TABLE */
+
+        const expenseRows =
+          project.expenses
+          .map(exp=>`
+
+            <tr>
+
+              <td>
+                ${exp.reason}
+              </td>
+
+              <td>
+                ₹${exp.amount}
+              </td>
+
+            </tr>
+
+          `)
+          .join("");
+
+        /* REVENUE TABLE */
+
+        const revenueRows =
+          project.revenues
+          .map(rev=>`
+
+            <tr>
+
+              <td>
+                ${rev.reason}
+              </td>
+
+              <td>
+                ₹${rev.amount}
+              </td>
+
+            </tr>
+
+          `)
+          .join("");
+
+        /* CARD */
 
         const card =
           document.createElement("div");
@@ -708,57 +650,173 @@ td{
         card.className =
           "project-card";
 
+        card.style.border =
+          `1px solid ${color}`;
+
         card.innerHTML = `
 
-          <h2>
+          <h2 style="color:${color}">
             ${project.name}
           </h2>
 
-          <p class="artist">
+          <div class="artist">
 
-            Artists:
-            ${project.artist}
+            <strong>
+              Artists:
+            </strong>
 
-          </p>
+            <br>
+
+            ${
+              project.artists
+              ? project.artists.join(", ")
+              : "No Artists"
+            }
+
+          </div>
+
+          <div
+            class="
+              section-title
+              expense-title
+            "
+          >
+            Expense History
+          </div>
+
+          <table class="mini-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Reason
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                expenseRows ||
+
+                `
+                <tr>
+                  <td colspan="2">
+                    No Expenses Yet
+                  </td>
+                </tr>
+                `
+              }
+
+            </tbody>
+
+          </table>
+
+          <div
+            class="
+              section-title
+              revenue-title
+            "
+          >
+            Revenue History
+          </div>
+
+          <table class="mini-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Reason
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                revenueRows ||
+
+                `
+                <tr>
+                  <td colspan="2">
+                    No Revenue Yet
+                  </td>
+                </tr>
+                `
+              }
+
+            </tbody>
+
+          </table>
 
           <div class="stats">
 
             <p>
               Budget:
-              ₹${project.budget}
+              ₹${project.budget || 0}
             </p>
 
             <p>
-              Spent:
-              ₹${project.spent}
+              Total Spent:
+              ₹${totalSpent}
             </p>
 
             <p>
-              Revenue:
-              ₹${project.revenue}
+              Total Revenue:
+              ₹${totalRevenue}
             </p>
 
-            <p class="profit">
+            <p class="${
+              profit >= 0
+              ? 'profit'
+              : 'loss'
+            }">
 
-              Profit:
-              ₹${project.revenue - project.spent}
+              ${
+                profit >= 0
+                ? 'Profit'
+                : 'Loss'
+              }
+
+              :
+              ₹${profit}
 
             </p>
 
           </div>
 
-          <div class="btn-group">
+          <div class="button-row">
 
             <button
               class="edit-btn"
-              onclick="editProject(${index})"
+              onclick="
+                editProject(${realIndex})
+              "
             >
               Edit
             </button>
 
             <button
               class="delete-btn"
-              onclick="deleteProject(${index})"
+              onclick="
+                deleteProject(${realIndex})
+              "
             >
               Delete
             </button>
@@ -776,22 +834,7 @@ td{
     renderProjects();
 
   </script>
-  <div class="footer">
-
-  Made with ❤️ by Sritosh for Atticulture
-
-</div>
 
 </body>
-
-<div class="bg-animation">
-
-  <div class="blob blob1"></div>
-
-  <div class="blob blob2"></div>
-
-  <div class="blob blob3"></div>
-
-</div>
 
 </html>

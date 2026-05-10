@@ -5,579 +5,527 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>ATTICULTURE Dashboard</title>
+  <title>
+    ATTICULTURE Dashboard
+  </title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-body{
+    body{
 
-  font-family:Arial,sans-serif;
+      font-family:Arial,sans-serif;
 
-  background:
-  linear-gradient(
-    135deg,
-    #09090f,
-    #111827,
-    #1e1b4b
-  );
+      background:
+      linear-gradient(
+        135deg,
+        #070816,
+        #111827,
+        #1e1b4b
+      );
 
-  min-height:100vh;
+      color:white;
 
-  padding:30px;
+      min-height:100vh;
 
-  color:white;
+      padding:30px;
 
-  overflow-x:hidden;
+      overflow-x:hidden;
 
-  position:relative;
-}
+      position:relative;
+    }
 
-/* ANIMATED BACKGROUND */
+    /* BACKGROUND */
 
-.bg-animation{
+    .bg-animation{
 
-  position:fixed;
+      position:fixed;
 
-  width:100%;
+      width:100%;
 
-  height:100%;
+      height:100%;
 
-  top:0;
+      top:0;
 
-  left:0;
+      left:0;
 
-  overflow:hidden;
+      z-index:-1;
 
-  z-index:-1;
-}
+      overflow:hidden;
+    }
 
-.blob{
+    .blob{
 
-  position:absolute;
+      position:absolute;
 
-  border-radius:50%;
+      border-radius:50%;
 
-  filter:blur(120px);
+      filter:blur(120px);
 
-  opacity:0.35;
+      opacity:0.3;
 
-  animation:float 12s infinite ease-in-out;
-}
+      animation:float 12s infinite ease-in-out;
+    }
 
-.blob1{
+    .blob1{
 
-  width:350px;
+      width:350px;
 
-  height:350px;
+      height:350px;
 
-  background:#7c3aed;
+      background:#7c3aed;
 
-  top:10%;
+      top:5%;
 
-  left:5%;
-}
+      left:5%;
+    }
 
-.blob2{
+    .blob2{
 
-  width:300px;
+      width:300px;
 
-  height:300px;
+      height:300px;
 
-  background:#06b6d4;
+      background:#06b6d4;
 
-  bottom:10%;
+      bottom:10%;
 
-  right:10%;
+      right:10%;
+    }
 
-  animation-delay:2s;
-}
+    .blob3{
 
-.blob3{
+      width:250px;
 
-  width:250px;
+      height:250px;
 
-  height:250px;
+      background:#ec4899;
 
-  background:#ec4899;
+      top:40%;
 
-  top:40%;
+      right:30%;
+    }
 
-  right:30%;
+    @keyframes float{
 
-  animation-delay:4s;
-}
+      0%{
+        transform:translateY(0px);
+      }
 
-@keyframes float{
+      50%{
+        transform:translateY(-30px);
+      }
 
-  0%{
-    transform:translateY(0px);
-  }
+      100%{
+        transform:translateY(0px);
+      }
+    }
 
-  50%{
-    transform:translateY(-30px);
-  }
+    /* NAVBAR */
 
-  100%{
-    transform:translateY(0px);
-  }
-}
+    .navbar{
 
-/* NAVBAR */
+      display:flex;
 
-.navbar{
+      justify-content:space-between;
 
-  display:flex;
+      align-items:center;
 
-  justify-content:space-between;
+      margin-bottom:35px;
+    }
 
-  align-items:center;
+    .logo{
 
-  margin-bottom:35px;
-}
+      font-size:40px;
 
-.logo{
+      font-weight:bold;
 
-  font-size:38px;
+      color:#a855f7;
 
-  font-weight:bold;
+      text-shadow:
+      0 0 10px #9333ea,
+      0 0 25px #9333ea;
+    }
 
-  color:#a855f7;
+    .nav-links{
 
-  text-shadow:
-  0 0 10px #9333ea,
-  0 0 25px #9333ea;
-}
+      display:flex;
 
-.nav-links{
+      gap:15px;
+    }
 
-  display:flex;
+    .nav-links a{
 
-  gap:15px;
-}
+      text-decoration:none;
 
-.nav-links a{
+      color:white;
 
-  text-decoration:none;
+      padding:12px 18px;
 
-  padding:12px 20px;
+      border-radius:14px;
 
-  border-radius:14px;
+      background:
+      rgba(255,255,255,0.08);
 
-  color:white;
+      border:
+      1px solid rgba(255,255,255,0.08);
 
-  font-weight:bold;
+      backdrop-filter:blur(12px);
+    }
 
-  background:
-  rgba(255,255,255,0.08);
+    /* CARDS */
 
-  border:
-  1px solid rgba(255,255,255,0.1);
+    .top-cards{
 
-  backdrop-filter:blur(12px);
+      display:grid;
 
-  transition:0.3s;
-}
+      grid-template-columns:
+      repeat(auto-fit,minmax(220px,1fr));
 
-.nav-links a:hover{
+      gap:20px;
 
-  background:
-  rgba(168,85,247,0.25);
+      margin-bottom:30px;
+    }
 
-  box-shadow:
-  0 0 20px rgba(168,85,247,0.5);
-}
+    .card,
+    .legend-box,
+    .add-box,
+    .project-card,
+    .chart-section{
 
-/* TOP CARDS */
+      background:
+      rgba(255,255,255,0.08);
 
-.top-cards{
+      border:
+      1px solid rgba(255,255,255,0.08);
 
-  display:grid;
+      backdrop-filter:blur(14px);
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
+      border-radius:24px;
 
-  gap:20px;
+      box-shadow:
+      0 8px 30px rgba(0,0,0,0.3);
+    }
 
-  margin-bottom:30px;
-}
+    .card{
 
-.card{
+      padding:24px;
+    }
 
-  background:
-  rgba(255,255,255,0.08);
+    .card h2{
 
-  border:
-  1px solid rgba(255,255,255,0.1);
+      margin-top:12px;
+    }
 
-  backdrop-filter:blur(14px);
+    /* LEGEND */
 
-  padding:25px;
+    .legend-box{
 
-  border-radius:24px;
+      padding:24px;
 
-  box-shadow:
-  0 8px 30px rgba(0,0,0,0.3);
-}
+      margin-bottom:30px;
+    }
 
-.card p{
+    .legend-box h2{
 
-  color:#cbd5e1;
+      color:#c084fc;
 
-  margin-bottom:10px;
-}
+      margin-bottom:18px;
+    }
 
-.card h2{
+    .legend-grid{
 
-  font-size:34px;
+      display:flex;
 
-  color:#fff;
-}
+      flex-wrap:wrap;
 
-/* BOXES */
+      gap:12px;
+    }
 
-.add-box,
-.chart-section,
-.chart-box,
-.budget-box,
-.project-card,
-table{
+    .legend-item{
 
-  background:
-  rgba(255,255,255,0.08);
+      display:flex;
 
-  border:
-  1px solid rgba(255,255,255,0.1);
+      align-items:center;
 
-  backdrop-filter:blur(14px);
+      gap:10px;
 
-  border-radius:24px;
+      padding:10px 14px;
 
-  box-shadow:
-  0 8px 30px rgba(0,0,0,0.3);
-}
+      border-radius:14px;
 
-/* FORM SECTIONS */
+      background:
+      rgba(255,255,255,0.05);
+    }
 
-.add-box,
-.budget-box{
+    .legend-color{
 
-  padding:25px;
+      width:18px;
 
-  margin-bottom:30px;
-}
+      height:18px;
 
-.add-box h2,
-.budget-box h2,
-.title{
+      border-radius:50%;
+    }
 
-  color:#c084fc;
+    /* ADD BOX */
 
-  margin-bottom:20px;
-}
+    .add-box{
 
-/* INPUTS */
+      padding:24px;
 
-input{
+      margin-bottom:30px;
+    }
 
-  width:100%;
+    .add-box h2{
 
-  padding:15px;
+      color:#c084fc;
 
-  border:none;
+      margin-bottom:20px;
+    }
 
-  border-radius:14px;
+    input,
+    select{
 
-  margin-top:12px;
+      width:100%;
 
-  background:
-  rgba(255,255,255,0.08);
+      padding:14px;
 
-  color:white;
+      margin-top:12px;
 
-  outline:none;
+      border:none;
 
-  font-size:15px;
+      border-radius:14px;
 
-  border:
-  1px solid rgba(255,255,255,0.08);
-}
+      background:
+      rgba(255,255,255,0.08);
 
-input::placeholder{
+      color:white;
 
-  color:#cbd5e1;
-}
+      outline:none;
+    }
 
-/* BUTTONS */
+    option{
 
-button{
+      background:#111827;
+    }
 
-  width:100%;
+    button{
 
-  padding:14px;
+      width:100%;
 
-  margin-top:15px;
+      padding:14px;
 
-  border:none;
+      margin-top:14px;
 
-  border-radius:14px;
+      border:none;
 
-  background:
-  linear-gradient(
-    to right,
-    #7c3aed,
-    #06b6d4
-  );
+      border-radius:14px;
 
-  color:white;
+      color:white;
 
-  font-weight:bold;
+      font-weight:bold;
 
-  cursor:pointer;
+      cursor:pointer;
+    }
 
-  transition:0.3s;
-}
+    .primary-btn{
 
-button:hover{
+      background:
+      linear-gradient(
+        to right,
+        #7c3aed,
+        #06b6d4
+      );
+    }
 
-  transform:translateY(-2px);
+    .pink-btn{
 
-  box-shadow:
-  0 0 20px rgba(124,58,237,0.6);
-}
+      background:
+      linear-gradient(
+        to right,
+        #ec4899,
+        #f43f5e
+      );
+    }
 
-/* PROJECT GRID */
+    .remove-btn{
 
-.project-grid{
+      background:
+      linear-gradient(
+        to right,
+        #ef4444,
+        #f97316
+      );
+    }
 
-  display:grid;
+    /* PROJECTS */
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(320px,1fr));
+    .project-grid{
 
-  gap:20px;
+      display:grid;
 
-  margin-top:30px;
-}
+      grid-template-columns:
+      repeat(auto-fit,minmax(370px,1fr));
 
-.project-card{
+      gap:20px;
+    }
 
-  padding:24px;
-}
+    .project-card{
 
-.project-card h2{
+      padding:24px;
+    }
 
-  color:#c084fc;
+    .artist{
 
-  margin-bottom:10px;
-}
+      color:#d1d5db;
 
-.artist{
+      margin:10px 0;
+    }
 
-  color:#cbd5e1;
+    .stats{
 
-  margin-bottom:15px;
-}
+      line-height:2;
 
-.stats{
+      margin-top:15px;
+    }
 
-  line-height:1.9;
+    .profit{
 
-  margin-bottom:15px;
-}
+      color:#22c55e;
 
-.profit{
+      font-weight:bold;
+    }
 
-  color:#22c55e;
+    .loss{
 
-  font-weight:bold;
-}
+      color:#ef4444;
 
-/* CHARTS */
+      font-weight:bold;
+    }
 
-.chart-section,
-.chart-box{
+    /* TABLES */
 
-  margin-top:35px;
+    .mini-table{
 
-  padding:25px;
+      width:100%;
 
-  display:flex;
+      margin-top:18px;
 
-  justify-content:center;
+      border-collapse:collapse;
+    }
 
-  align-items:center;
+    .mini-table th{
 
-  flex-direction:column;
-}
+      text-align:left;
 
-.chart-container{
+      padding:10px;
 
-  width:280px;
+      color:#c084fc;
+    }
 
-  height:280px;
-}
+    .mini-table td{
 
-/* TABLE */
+      padding:10px;
 
-table{
+      border-top:
+      1px solid rgba(255,255,255,0.08);
+    }
 
-  width:100%;
+    /* CHART */
 
-  margin-top:30px;
+    .chart-section{
 
-  border-collapse:collapse;
+      margin-top:35px;
 
-  overflow:hidden;
-}
+      padding:24px;
 
-th{
+      text-align:center;
+    }
 
-  background:
-  rgba(124,58,237,0.4);
+    .chart-container{
 
-  color:white;
+      width:280px;
 
-  padding:16px;
-}
+      height:280px;
 
-td{
+      margin:auto;
+    }
 
-  padding:16px;
+    /* FOOTER */
 
-  text-align:center;
+    .footer{
 
-  border-bottom:
-  1px solid rgba(255,255,255,0.08);
-}
+      text-align:center;
 
-/* ACTION BUTTONS */
+      margin-top:40px;
 
-.edit-btn{
+      color:#cbd5e1;
+    }
 
-  background:#06b6d4;
-}
+    /* MOBILE */
 
-.delete-btn{
+    @media(max-width:768px){
 
-  background:#ef4444;
-}
+      body{
+        padding:18px;
+      }
 
-/* MOBILE RESPONSIVE */
+      .navbar{
 
-@media(max-width:768px){
+        flex-direction:column;
 
-  body{
-    padding:18px;
-  }
+        align-items:flex-start;
 
-  .navbar{
+        gap:18px;
+      }
 
-    flex-direction:column;
+      .nav-links{
 
-    gap:18px;
+        flex-wrap:wrap;
+      }
 
-    align-items:flex-start;
-  }
+      .project-grid{
 
-  .logo{
-    font-size:28px;
-  }
+        grid-template-columns:1fr;
+      }
 
-  .nav-links{
+      .chart-container{
 
-    width:100%;
+        width:220px;
 
-    display:flex;
+        height:220px;
+      }
+    }
 
-    flex-wrap:wrap;
-
-    gap:10px;
-  }
-
-  .nav-links a{
-
-    flex:1;
-
-    text-align:center;
-
-    font-size:14px;
-
-    padding:10px;
-  }
-
-  .top-cards{
-
-    grid-template-columns:1fr;
-  }
-
-  .card h2{
-    font-size:26px;
-  }
-
-  .project-grid{
-
-    grid-template-columns:1fr;
-  }
-
-  .project-card{
-    padding:18px;
-  }
-
-  .chart-container{
-
-    width:220px;
-
-    height:220px;
-  }
-
-  table{
-
-    display:block;
-
-    overflow-x:auto;
-
-    white-space:nowrap;
-  }
-
-  input{
-    font-size:14px;
-  }
-
-  button{
-    font-size:14px;
-  }
-
-}
-.footer{
-
-  margin-top:40px;
-
-  text-align:center;
-
-  color:#cbd5e1;
-
-  font-size:14px;
-
-  opacity:0.8;
-}
-
-
-</style>
+  </style>
 
 </head>
 
 <body>
+
+  <!-- BACKGROUND -->
+
+  <div class="bg-animation">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+  </div>
 
   <!-- NAVBAR -->
 
@@ -590,18 +538,22 @@ td{
     <div class="nav-links">
 
       <a href="projects.html">
-        See All Projects
+        Projects
+      </a>
+
+      <a href="artists.html">
+        Artists
       </a>
 
       <a href="budget.html">
-        Monthly Budget
+        Budget
       </a>
 
     </div>
 
   </div>
 
-  <!-- OVERVIEW -->
+  <!-- TOP CARDS -->
 
   <div class="top-cards">
 
@@ -617,9 +569,9 @@ td{
 
     <div class="card">
 
-      <p>Total Spent</p>
+      <p>Total Revenue</p>
 
-      <h2 id="totalSpent">
+      <h2 id="totalRevenue">
         ₹0
       </h2>
 
@@ -627,9 +579,9 @@ td{
 
     <div class="card">
 
-      <p>Total Revenue</p>
+      <p>Total Expenses</p>
 
-      <h2 id="totalRevenue">
+      <h2 id="totalSpent">
         ₹0
       </h2>
 
@@ -647,11 +599,28 @@ td{
 
   </div>
 
+  <!-- LEGEND -->
+
+  <div class="legend-box">
+
+    <h2>
+      Artist Color Legend
+    </h2>
+
+    <div
+      class="legend-grid"
+      id="legendGrid"
+    ></div>
+
+  </div>
+
   <!-- ADD PROJECT -->
 
   <div class="add-box">
 
-    <h2>Add New Project</h2>
+    <h2>
+      Add New Project
+    </h2>
 
     <input
       type="text"
@@ -659,11 +628,20 @@ td{
       placeholder="Project Name"
     >
 
-    <input
-      type="text"
-      id="artistName"
-      placeholder="Artists Involved"
+    <div id="artistContainer">
+
+      <select class="artist-select"></select>
+
+      <select class="artist-select"></select>
+
+    </div>
+
+    <button
+      class="pink-btn"
+      onclick="addArtistField()"
     >
+      + Add More Artist
+    </button>
 
     <input
       type="number"
@@ -671,7 +649,10 @@ td{
       placeholder="Project Budget"
     >
 
-    <button onclick="addProject()">
+    <button
+      class="primary-btn"
+      onclick="addProject()"
+    >
       Add Project
     </button>
 
@@ -684,7 +665,7 @@ td{
     id="projectGrid"
   ></div>
 
-  <!-- ANALYTICS -->
+  <!-- CHART -->
 
   <div class="chart-section">
 
@@ -700,12 +681,218 @@ td{
 
   </div>
 
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    Made with ❤️ by Sritosh for Atticulture
+
+  </div>
+
   <script>
+
+    const defaultArtists = [
+
+      {
+        name:"Ofro",
+        color:"#a855f7"
+      },
+
+      {
+        name:"Kelithee",
+        color:"#06b6d4"
+      },
+
+      {
+        name:"Asal kolaar",
+        color:"#ec4899"
+      },
+
+      {
+        name:"Fault kai",
+        color:"#22c55e"
+      },
+
+      {
+        name:"Urban thozha",
+        color:"#f97316"
+      },
+
+      {
+        name:"Vaasi",
+        color:"#eab308"
+      },
+
+      {
+        name:"Rahul Sridhar",
+        color:"#3b82f6"
+      }
+
+    ];
+
+    if(!localStorage.getItem("artists")){
+
+      localStorage.setItem(
+        "artists",
+        JSON.stringify(defaultArtists)
+      );
+    }
+
+    const artists =
+      JSON.parse(
+        localStorage.getItem("artists")
+      ) || [];
 
     let projects =
       JSON.parse(
         localStorage.getItem("projects")
       ) || [];
+
+    /* LOAD ARTISTS */
+
+    function loadArtists(){
+
+      const selects =
+        document.querySelectorAll(
+          ".artist-select"
+        );
+
+      selects.forEach((select)=>{
+
+        select.innerHTML = "";
+
+        artists.forEach((artist)=>{
+
+          const option =
+            document.createElement("option");
+
+          option.value =
+            artist.name;
+
+          option.innerText =
+            artist.name;
+
+          select.appendChild(option);
+
+        });
+
+      });
+
+    }
+
+    /* RENDER LEGEND */
+
+    function renderLegend(){
+
+      const legendGrid =
+        document.getElementById(
+          "legendGrid"
+        );
+
+      legendGrid.innerHTML = "";
+
+      artists.forEach((artist)=>{
+
+        const item =
+          document.createElement("div");
+
+        item.className =
+          "legend-item";
+
+        item.innerHTML = `
+
+          <div
+            class="legend-color"
+            style="
+              background:${artist.color};
+            "
+          ></div>
+
+          <span>
+            ${artist.name}
+          </span>
+
+        `;
+
+        legendGrid.appendChild(item);
+
+      });
+
+    }
+
+    /* ADD ARTIST FIELD */
+
+    function addArtistField(){
+
+      const container =
+        document.getElementById(
+          "artistContainer"
+        );
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.style.marginTop =
+        "12px";
+
+      const select =
+        document.createElement("select");
+
+      select.className =
+        "artist-select";
+
+      artists.forEach((artist)=>{
+
+        const option =
+          document.createElement("option");
+
+        option.value =
+          artist.name;
+
+        option.innerText =
+          artist.name;
+
+        select.appendChild(option);
+
+      });
+
+      const removeBtn =
+        document.createElement("button");
+
+      removeBtn.innerText =
+        "Remove Artist";
+
+      removeBtn.className =
+        "remove-btn";
+
+      removeBtn.onclick =
+        function(){
+
+          const total =
+            document.querySelectorAll(
+              ".artist-select"
+            ).length;
+
+          if(total <= 2){
+
+            alert(
+              "Minimum 2 artists required"
+            );
+
+            return;
+          }
+
+          wrapper.remove();
+        };
+
+      wrapper.appendChild(select);
+
+      wrapper.appendChild(removeBtn);
+
+      container.appendChild(wrapper);
+    }
+
+    /* SAVE */
 
     function saveProjects(){
 
@@ -715,22 +902,45 @@ td{
       );
     }
 
+    /* ADD PROJECT */
+
     function addProject(){
 
       const name =
-        document.getElementById("projectName").value;
-
-      const artist =
-        document.getElementById("artistName").value;
+        document.getElementById(
+          "projectName"
+        ).value;
 
       const budget =
         Number(
-          document.getElementById("projectBudget").value
+          document.getElementById(
+            "projectBudget"
+          ).value
         );
 
-      if(!name || !artist || !budget){
+      const selects =
+        document.querySelectorAll(
+          ".artist-select"
+        );
 
-        alert("Fill all fields");
+      let selectedArtists = [];
+
+      selects.forEach((select)=>{
+
+        selectedArtists.push(
+          select.value
+        );
+
+      });
+
+      if(
+        !name ||
+        !budget
+      ){
+
+        alert(
+          "Fill all fields"
+        );
 
         return;
       }
@@ -738,47 +948,112 @@ td{
       projects.push({
 
         name,
-        artist,
+
+        artists:selectedArtists,
+
         budget,
-        spent:0,
-        revenue:0
+
+        expenses:[],
+
+        revenues:[]
 
       });
 
       saveProjects();
 
       renderProjects();
-
-      document.getElementById("projectName").value = "";
-
-      document.getElementById("artistName").value = "";
-
-      document.getElementById("projectBudget").value = "";
     }
 
-    function updateProject(index){
+    /* ADD EXPENSE */
 
-      const expense =
+    function addExpense(index){
+
+      const reason =
+        document.getElementById(
+          `expenseReason-${index}`
+        ).value;
+
+      const amount =
         Number(
-          document.getElementById(`expense-${index}`).value
+          document.getElementById(
+            `expenseAmount-${index}`
+          ).value
         );
 
-      const revenue =
-        Number(
-          document.getElementById(`revenue-${index}`).value
+      if(
+        !reason ||
+        !amount
+      ){
+
+        alert(
+          "Fill expense details"
         );
 
-      projects[index].spent += expense;
+        return;
+      }
 
-      projects[index].revenue += revenue;
+      projects[index]
+      .expenses
+      .push({
+
+        reason,
+        amount
+
+      });
 
       saveProjects();
 
       renderProjects();
     }
 
+    /* ADD REVENUE */
+
+    function addRevenue(index){
+
+      const reason =
+        document.getElementById(
+          `revenueReason-${index}`
+        ).value;
+
+      const amount =
+        Number(
+          document.getElementById(
+            `revenueAmount-${index}`
+          ).value
+        );
+
+      if(
+        !reason ||
+        !amount
+      ){
+
+        alert(
+          "Fill revenue details"
+        );
+
+        return;
+      }
+
+      projects[index]
+      .revenues
+      .push({
+
+        reason,
+        amount
+
+      });
+
+      saveProjects();
+
+      renderProjects();
+    }
+
+    /* CHART */
+
     const ctx =
-      document.getElementById("analyticsChart");
+      document.getElementById(
+        "analyticsChart"
+      );
 
     const chart =
       new Chart(ctx,{
@@ -788,7 +1063,7 @@ td{
         data:{
 
           labels:[
-            "Spent",
+            "Expenses",
             "Revenue"
           ],
 
@@ -797,36 +1072,110 @@ td{
             data:[0,0],
 
             backgroundColor:[
-              "#f43f5e",
-              "#6366f1"
+              "#ef4444",
+              "#22c55e"
             ]
 
           }]
-        },
-
-        options:{
-          responsive:true,
-          maintainAspectRatio:false
         }
 
       });
 
+    /* RENDER */
+
     function renderProjects(){
 
       const grid =
-        document.getElementById("projectGrid");
+        document.getElementById(
+          "projectGrid"
+        );
 
       grid.innerHTML = "";
 
-      let totalSpent = 0;
-
       let totalRevenue = 0;
 
-      projects.forEach((project,index)=>{
+      let totalSpent = 0;
 
-        totalSpent += project.spent;
+      projects
+      .slice()
+      .reverse()
+      .forEach((project,index)=>{
 
-        totalRevenue += project.revenue;
+        const realIndex =
+          projects.length - 1 - index;
+
+        const spent =
+          project.expenses
+          .reduce(
+            (sum,item)=>
+            sum + item.amount,
+            0
+          );
+
+        const revenue =
+          project.revenues
+          .reduce(
+            (sum,item)=>
+            sum + item.amount,
+            0
+          );
+
+        totalSpent += spent;
+
+        totalRevenue += revenue;
+
+        const profit =
+          revenue - spent;
+
+        const artistData =
+          artists.find(
+            a =>
+            a.name ===
+            project.artists[0]
+          );
+
+        const color =
+          artistData
+          ? artistData.color
+          : "#a855f7";
+
+        const expenseRows =
+          project.expenses
+          .map(exp=>`
+
+            <tr>
+
+              <td>
+                ${exp.reason}
+              </td>
+
+              <td>
+                ₹${exp.amount}
+              </td>
+
+            </tr>
+
+          `)
+          .join("");
+
+        const revenueRows =
+          project.revenues
+          .map(rev=>`
+
+            <tr>
+
+              <td>
+                ${rev.reason}
+              </td>
+
+              <td>
+                ₹${rev.amount}
+              </td>
+
+            </tr>
+
+          `)
+          .join("");
 
         const card =
           document.createElement("div");
@@ -834,18 +1183,93 @@ td{
         card.className =
           "project-card";
 
+        card.style.border =
+          `1px solid ${color}`;
+
         card.innerHTML = `
 
-          <h2>
+          <h2 style="color:${color}">
             ${project.name}
           </h2>
 
           <p class="artist">
 
             Artists:
-            ${project.artist}
+            ${project.artists.join(", ")}
 
           </p>
+
+          <h3 style="margin-top:18px;color:#f472b6">
+            Expense History
+          </h3>
+
+          <table class="mini-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Reason
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${expenseRows || `
+                <tr>
+                  <td colspan="2">
+                    No Expenses Yet
+                  </td>
+                </tr>
+              `}
+
+            </tbody>
+
+          </table>
+
+          <h3 style="margin-top:22px;color:#22c55e">
+            Revenue History
+          </h3>
+
+          <table class="mini-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Reason
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${revenueRows || `
+                <tr>
+                  <td colspan="2">
+                    No Revenue Yet
+                  </td>
+                </tr>
+              `}
+
+            </tbody>
+
+          </table>
 
           <div class="stats">
 
@@ -855,40 +1279,70 @@ td{
             </p>
 
             <p>
-              Spent:
-              ₹${project.spent}
+              Total Spent:
+              ₹${spent}
             </p>
 
             <p>
-              Revenue:
-              ₹${project.revenue}
+              Total Revenue:
+              ₹${revenue}
             </p>
 
-            <p class="profit">
+            <p class="${
+              profit >= 0
+              ? 'profit'
+              : 'loss'
+            }">
 
-              Profit:
-              ₹${project.revenue - project.spent}
+              ${
+                profit >= 0
+                ? 'Profit'
+                : 'Loss'
+              }
+
+              :
+              ₹${profit}
 
             </p>
 
           </div>
 
           <input
-            type="number"
-            id="expense-${index}"
-            placeholder="Add Expense"
+            type="text"
+            id="expenseReason-${realIndex}"
+            placeholder="Expense Reason"
           >
 
           <input
             type="number"
-            id="revenue-${index}"
-            placeholder="Add Revenue"
+            id="expenseAmount-${realIndex}"
+            placeholder="Expense Amount"
           >
 
           <button
-            onclick="updateProject(${index})"
+            class="pink-btn"
+            onclick="addExpense(${realIndex})"
           >
-            Save Details
+            Add Expense
+          </button>
+
+          <input
+            type="text"
+            id="revenueReason-${realIndex}"
+            placeholder="Revenue Reason"
+          >
+
+          <input
+            type="number"
+            id="revenueAmount-${realIndex}"
+            placeholder="Revenue Amount"
+          >
+
+          <button
+            class="primary-btn"
+            onclick="addRevenue(${realIndex})"
+          >
+            Add Revenue
           </button>
 
         `;
@@ -897,45 +1351,48 @@ td{
 
       });
 
-      document.getElementById("totalProjects").innerText =
+      document.getElementById(
+        "totalProjects"
+      ).innerText =
         projects.length;
 
-      document.getElementById("totalSpent").innerText =
-        "₹" + totalSpent;
-
-      document.getElementById("totalRevenue").innerText =
+      document.getElementById(
+        "totalRevenue"
+      ).innerText =
         "₹" + totalRevenue;
 
-      document.getElementById("totalProfit").innerText =
-        "₹" + (totalRevenue - totalSpent);
+      document.getElementById(
+        "totalSpent"
+      ).innerText =
+        "₹" + totalSpent;
+
+      document.getElementById(
+        "totalProfit"
+      ).innerText =
+        "₹" + (
+          totalRevenue -
+          totalSpent
+        );
 
       chart.data.datasets[0].data = [
+
         totalSpent,
+
         totalRevenue
+
       ];
 
       chart.update();
     }
 
+    loadArtists();
+
+    renderLegend();
+
     renderProjects();
 
   </script>
-  <div class="footer">
-
-  Made with ❤️ by Sritosh for Atticulture
-
-</div>
 
 </body>
-
-<div class="bg-animation">
-
-  <div class="blob blob1"></div>
-
-  <div class="blob blob2"></div>
-
-  <div class="blob blob3"></div>
-
-</div>
 
 </html>
